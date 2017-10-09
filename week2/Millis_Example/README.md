@@ -57,6 +57,6 @@ Yes. This is more complex. But the board will be able to be doing other things a
 
 To see a good example of this, wire your board like this:
 
-![Wiring example](Millis_Example/Wiring.png)
+![Wiring example](Wiring.png)
 
-Then take a look at [this example](Millis_Example/Millis_Example.ino) code.
+Then take a look at [this example](Millis_Example.ino) code.
