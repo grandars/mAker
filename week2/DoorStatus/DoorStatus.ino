@@ -9,8 +9,8 @@
 #define pin_switch1 D1
 #define pin_switch2 D2
 
-#define WLAN_SSID     "xxxxxx"
-#define WLAN_PASSWORD "xxxxxx"
+#define WLAN_SSID     "Torvmarkene_11"
+#define WLAN_PASSWORD "jegersjef1"
 
 DHT dht(DHTPIN, DHTTYPE, 11);
 
@@ -28,15 +28,27 @@ String ipaddress;
 const char * ledtogglepage = "<!DOCTYPE html>"
 "<html>"
 "<body>"
-"<p>NodeMCU-ESP8266 AJAX eksempel</p> "
+"<h3>NodeMCU-ESP8266 AJAX eksempel</h3> "
 "<button id=\"btnled\" onclick=\"ledtoggle()\">Klikk</button> "
+
+"<br><br>"
+"<b>Klima</b>"
+"<div id=\"temp\"></div>"
+"<div id=\"humid\"></div>"
+"<br>"
+"<b>D&oslash;rer</b><br>"
+"<div id=\"sw1\"></div>"
+"<div id=\"sw2\"></div>"
+
 "<script>"
 
 "document.addEventListener(\"DOMContentLoaded\", function() {"
 "  ledstatus();"
+"  dht22status();"
 "});"
 
 "setInterval(ledstatus, 1000);"
+"setInterval(dht22status, 1000);"
 
 "function ledtoggle() {"
 "  var xhttp = new XMLHttpRequest();"
@@ -44,9 +56,9 @@ const char * ledtogglepage = "<!DOCTYPE html>"
 "    if (this.readyState == 4 && this.status == 200) {"
 "       console.log(this.responseText);"
 "       if (this.responseText == 'Led: low') {"
-"          document.getElementById(\"btnled\").innerHTML = 'LED er av, klikk for a sla den pa';"
+"          document.getElementById(\"btnled\").innerHTML = 'LED er av, klikk for &aring; sl&aring; den p&aring;';"
 "       } else {"
-"          document.getElementById(\"btnled\").innerHTML = 'LED er pa, klikk for a sla den av';"
+"          document.getElementById(\"btnled\").innerHTML = 'LED er p&aring;, klikk for &aring; sl&aring; den av';"
 "       }"
 "    }"
 "  };"
@@ -59,11 +71,10 @@ const char * ledtogglepage = "<!DOCTYPE html>"
 "  var xhttp = new XMLHttpRequest();"
 "  xhttp.onreadystatechange = function() {"
 "    if (this.readyState == 4 && this.status == 200) {"
-"       console.log(this.responseText);"
 "       if (this.responseText == 'Led: low') {"
-"          document.getElementById(\"btnled\").innerHTML = 'LED er av, klikk for a sla den pa';"
+"          document.getElementById(\"btnled\").innerHTML = 'LED er av, klikk for &aring; sl&aring; den p&aring;';"
 "       } else {"
-"          document.getElementById(\"btnled\").innerHTML = 'LED er pa, klikk for a sla den av';"
+"          document.getElementById(\"btnled\").innerHTML = 'LED er p&aring;, klikk for &aring; sl&aring; den av';"
 "       }"
 "    }"
 "  };"
@@ -71,6 +82,27 @@ const char * ledtogglepage = "<!DOCTYPE html>"
 "  xhttp.send(null);"
 "  xhttp.timeout = 2000;"
 "}"
+
+"function dht22status() {"
+"  var xhttp = new XMLHttpRequest();"
+"  xhttp.onreadystatechange = function() {"
+"    if (this.readyState == 4 && this.status == 200) {"
+"        var json = JSON.parse(this.responseText);"
+"        var temp = json.temperature.toFixed(2);"
+"        var humi = json.humidity.toFixed(2);"
+"        var sw1 = json.switch1;"
+"        var sw2 = json.switch2;"
+"        document.getElementById(\"temp\").innerHTML = 'Temperatur: ' + temp;"
+"        document.getElementById(\"humid\").innerHTML = 'Luftfuktighet: ' + humi;"
+"        document.getElementById(\"sw1\").innerHTML = 'D&oslash;r 1: ' + sw1;"
+"        document.getElementById(\"sw2\").innerHTML = 'D&oslash;r 2: ' + sw2;"
+"    }"
+"  };"
+"  xhttp.open('GET', '/doorstatus.json', true);"
+"  xhttp.send(null);"
+"  xhttp.timeout = 2000;"
+"}"
+
 
 "</script>"
 "</body> "
@@ -187,14 +219,14 @@ void led(){
 }
 
 void getswitchstatus(){
-   if (digitalRead(pin_switch1) == LOW) {
-     switch1Staus = "Apen";
+   if (digitalRead(pin_switch1) == HIGH) {
+     switch1Staus = "&Aring;pen";
    } else {
      switch1Staus = "Stengt";
    }
 
-   if (digitalRead(pin_switch2) == LOW) {
-     switch2Staus = "Apen";
+   if (digitalRead(pin_switch2) == HIGH) {
+     switch2Staus = "&Aring;pen";
    } else {
      switch2Staus = "Stengt";
    }
