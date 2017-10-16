@@ -9,8 +9,8 @@
 #define pin_switch1 D1
 #define pin_switch2 D2
 
-#define WLAN_SSID     "Torvmarkene_11"
-#define WLAN_PASSWORD "jegersjef1"
+#define WLAN_SSID     "xxxxxx"
+#define WLAN_PASSWORD "xxxxxx"
 
 DHT dht(DHTPIN, DHTTYPE, 11);
 
