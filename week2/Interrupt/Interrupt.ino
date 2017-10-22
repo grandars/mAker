@@ -2,8 +2,8 @@
 #define ledPin       D7
 #define interruptPin D1
 
-// Volatile is used since interrput will be handled in a ISR (Interrupt Service Routines) function
-// To make sure variables shared between an ISR and the main loop updated correctly, we need to declare them as volatile
+// Volatile is used since interrput will be handled in ISR (Interrupt Service Routines)
+// To make sure variables are shared correctly between ISR function and the main loop, we need to declare them as volatile
 // only ledstate and interruptCounter are shared between main loop and ISR, and need to be volatile
 // For Arduino, handling variables with interrupts, is the only time volatie is needed
 // If you want more information regarding volatie, Google it ;-)
