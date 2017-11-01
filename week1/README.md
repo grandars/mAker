@@ -5,8 +5,7 @@ For our first evening, we'll connect up our ESP8266 chips. To do this, you need 
 1) Download and install the [Arduino IDE](https://www.arduino.cc/en/Main/Software)
 2) Download and install NodeMCU drivers
   * [Windows](https://github.com/nodemcu/nodemcu-devkit/tree/master/Drivers)
-  * [Mac](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)
-    Also, if you have a Mac running macOS High Sierra, you need to allow the driver to run after installation. Go to *System Preferences* > *Security & Privacy* and click *Allow*
+  * [Mac](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers) - If you have a Mac running macOS High Sierra, you need to allow the driver to run after installation. Go to *System Preferences* > *Security & Privacy* and click *Allow*
 3) Launch Arduino and go to **File** > **Preferences** and input the following in the **Additional Boards Manager URLs**-field: `http://arduino.esp8266.com/stable/package_esp8266com_index.json`
 4) Go to **Tools** > **Boards** > **Board Manager...**
 5) Find **esp8266 by ESP8266 Community** and click **Install**
