@@ -11,7 +11,7 @@ volatile int interruptCounter = 0;
 volatile int ledstate = LOW;
 
 // Pressing a button can cause strange behavior, due to mechanical/electrical issues, and the facts that the code runs extremely fast.
-// So we will handle the button press, to be sure it is only pressed once within a very short timeframe.
+// We will handle the button press to be sure it is only pressed once within a very short timeframe.
 // This is critical for a robust code, when using buttons.
 // We will use millis() to test if the button change state within a few milli seconds, which in almost all cases is not
 // anything that should be possible.
